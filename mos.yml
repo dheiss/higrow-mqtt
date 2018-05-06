@@ -1,0 +1,72 @@
+author: dheiss
+description: HiGrow ESP32 Sensor to MQTT
+version: 1.0
+
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+
+# Optional. List of tags for online search.
+tags:
+  - c
+  - esp32
+  - higrow
+
+# List of files / directories with C sources. No slashes at the end of dir names.
+sources:
+  - src
+
+# List of dirs. Files from these dirs will be copied to the device filesystem
+filesystem:
+  - fs
+
+config_schema:
+  - ["higrow", "o", {title: "Higrow settings"}]
+  - ["higrow.sleep", "i", 10, {title: "Sleep timer in min"}]
+  - ["wifi.sta.enable", true]
+  - ["wifi.sta.ssid", "Heiss"]
+  - ["wifi.sta.pass", "Dh272829"]
+  - ["wifi.ap.enable", false]
+  - ["device.id", "Higrow_??????"]
+  - ["mqtt.server", "10.0.4.79:1883"]
+  - ["mqtt.enable", true]
+  - ["mqtt.ssl_ca_cert", ""]
+  - ["mqtt.ssl_cert", ""]
+  - ["pins", "o", {title: "Pins layout"}]
+  - ["pins.led", "i", 16, {title: "LED"}]
+  - ["pins.button", "i", 0, {title: "Button"}]
+  
+# These settings get compiled into the C structure, and can be accessed
+# from the C code this way:
+#
+# printf("Hello from %s!\n", mgos_sys_config_get_device_id());
+#
+# Settings are cool: can be modified remotely without full firmware upgrade!
+#
+# To see all available compiled settings, buid the firmware and open
+# build/gen/mgos_config.h file.
+#
+# Also, in this config_schema section, you can override existing
+# settings that has been created by other libraries. For example, debug log
+# level is 2 by default. For this firmware we can override it to 3:
+#
+# config_schema:
+#  - ["debug.level", 3]
+
+
+# List of libraries used by this app, in order of initialisation
+libs:
+  - origin: https://github.com/mongoose-os-libs/ca-bundle
+  - origin: https://github.com/mongoose-os-libs/rpc-service-config
+  - origin: https://github.com/mongoose-os-libs/rpc-service-fs
+  - origin: https://github.com/mongoose-os-libs/rpc-uart
+  - origin: https://github.com/mongoose-os-libs/wifi
+  - origin: https://github.com/mongoose-os-libs/mqtt
+  - origin: https://github.com/mongoose-os-libs/dht
+  - origin: https://github.com/mongoose-os-libs/adc
+
+# Used by the mos tool to catch mos binaries incompatible with this file format
+manifest_version: 2017-05-18
+
+build_vars:
+ESP_IDF_SDKCONFIG_OPTS: "${build_vars.ESP_IDF_SDKCONFIG_OPTS} CONFIG_ESP32_DEEP_SLEEP_WAKEUP_DELAY=500"
