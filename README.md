@@ -2,13 +2,14 @@
 
 ## Overview
 
-This is an empty app, serves as a skeleton for building Mongoose OS
-apps from scratch.
+This app is an alternative firmware for the ESP32 based Higrow
+soil sensor from Luca Fabbri based on Mongoose OS
 
 ## How to install this app
 
-- Install and start [mos tool](https://mongoose-os.com/software.html)
-- Switch to the Project page, find and import this app, build and flash it:
+- Install [mos tool](https://mongoose-os.com/software.html)
+- Download GIT repository and unpack into your mos apps directory
+- Start mos tool
 
 <p align="center">
   <img src="https://mongoose-os.com/images/app1.gif" width="75%">

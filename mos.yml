@@ -22,11 +22,11 @@ filesystem:
 
 config_schema:
   - ["higrow", "o", {title: "Higrow settings"}]
-  - ["higrow.sleep", "i", 10, {title: "Sleep timer in min"}]
-  - ["wifi.sta.enable", true]
-  - ["wifi.sta.ssid", "Heiss"]
-  - ["wifi.sta.pass", "Dh272829"]
+  - ["higrow.sleep", "i", 3600, {title: "Sleep timer in sec"}]
   - ["wifi.ap.enable", false]
+  - ["wifi.sta.enable", true]
+  - ["wifi.sta.ssid", "<SSID>"]
+  - ["wifi.sta.pass", "<Password>"]
   - ["device.id", "Higrow_??????"]
   - ["mqtt.server", "10.0.4.79:1883"]
   - ["mqtt.enable", true]
@@ -35,7 +35,9 @@ config_schema:
   - ["pins", "o", {title: "Pins layout"}]
   - ["pins.led", "i", 16, {title: "LED"}]
   - ["pins.button", "i", 0, {title: "Button"}]
-  
+  - ["pins.dht", "i", 22, {title: "DHT Sensor"}]
+  - ["pins.soil", "i", 32, {title: "Soil moisture sensor"}]
+
 # These settings get compiled into the C structure, and can be accessed
 # from the C code this way:
 #
